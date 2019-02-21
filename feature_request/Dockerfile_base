@@ -1,0 +1,12 @@
+FROM ubuntu:18.04
+RUN apt-get update -y \
+&& apt-get install python3.6 -y \
+&& apt-get install python3-pip -y \
+&& apt-get install mariadb-server mariadb-client -y \
+&& apt-get install nano -y \
+&& apt-get install dos2unix -y \
+&& pip3 install Flask \
+&& pip3 install SQLAlchemy \
+&& export LC_ALL=C.UTF-8 \
+&& export LANG=C.UTF-8 \
+&& apt-get install curl -y

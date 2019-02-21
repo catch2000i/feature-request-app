@@ -1,0 +1,21 @@
+FROM basemachine:latest
+
+# Sets the working directory for following COPY and CMD instructions
+WORKDIR /app
+
+# copy files required for the app to run
+COPY app/app.py /app
+COPY db/sqlalchemy_declarative.py /app
+COPY db/sqlalchemy_insert.py /app
+
+RUN mkdir /app/templates
+COPY templates/demo.html   /app/templates
+
+RUN mkdir /app/js
+COPY js/*  /app/js/
+
+COPY start.sh   /app
+
+# run the batch script
+ENTRYPOINT ["/bin/bash", "/app/start.sh"]
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Feature Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+            integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="/js/moment.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap-datetimepicker.min.css"/>
+	<link rel="stylesheet" href="/js/demo.css"/>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+            <div class="panel-heading"><h2>DEMO: ADD NEW FEATURE</h2></div>
+        </div> <!-- END of panel-heading -->
+
+        <div class="panel-body">
+
+            <h3>New Feature</h3>
+			<!-- ADD NEW FEATURE  -->
+			<form class="form-inline" data-bind="submit: addFeature">
+				<input class="col-md-3 form-control" id="futureText" data-bind="value: newFeatureTitleText" placeholder="title" maxlength="100"/>
+				<select class="col-md-1 form-control" data-bind="options: $root.clients, value: $root.newFeatureClientValue, optionsText: 'name'"></select>
+				<input class="col-md-1 form-control" type="number" min="1" data-bind="value: newFeatureClientPriorityText" placeholder="client priority"/>
+				<select class="col-md-1 form-control" data-bind="options: $root.productareas, value: $root.newFeatureProductAreaValue, optionsText: 'name'"></select>
+				<span class="input-group date" id='datetimepicker1'>
+					<input type='text' class="col-md-2 form-control" data-bind="value: newFeatureTargetDate"/>
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</span>
+				<br><br>
+				<textarea class="col-md-8" data-bind="value: newFeatureDescriptionText" placeholder="description" maxlength="500"></textarea>
+				<label class="col-md-1">&nbsp;</label>
+				<br><br><br>
+				<button id="addButtons" type="submit" class="col-md-2 btn btn-primary">&nbsp;&nbsp;ADD FEATURE&nbsp;&nbsp;</button>							
+			</form>
+			<br><br><br><hr>
+
+            <h3>Features</h3>
+            <!-- FEATURES TABLE -->
+            <div class="table-wrapper-scroll-y">
+                <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-hover col-12">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>TITLE</th>
+                        <th>DESCRIPTION</th>
+                        <th>CLIENT</th>
+                        <th>CLIENT PRIORITY</th>
+                        <th>PRODUCT AREA</th>
+                        <th>TARGET DATE</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: features">
+                    <tr>
+                        <td><div class="col-1" data-bind="text: feature_id"/></td>
+                        <td><div class="col-2" data-bind="text: title" style="word-break:break-word;"/></td>
+                        <td><div class="col-4" data-bind="text: description" style="word-break:break-word;"/></td>
+                        <td><div class="col-1" data-bind="text: client_name"/></td>
+                        <td><div class="col-1" data-bind="text: client_priority"/></td>
+                        <td><div class="col-1" data-bind="text: product_area_name"/></td>
+                        <td><div class="col-1" data-bind="text: target_date"/></td>
+						<td><button class="btn btn-sm col-1" data-bind="click: $parent.removeFeature" ><span class="glyphicon glyphicon-remove"></span></button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>  <!-- END of panel-body -->
+        <div class="panel-footer"></div>
+
+    </div>
+</div>
+<script type="text/javascript" src="/js/demo.js"></script>
+</body>
+</html>
